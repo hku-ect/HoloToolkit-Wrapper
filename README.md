@@ -7,6 +7,8 @@ Works with:
   - Unity 5.6.1p4 (specifically Patch 4, because it fixes a SpatialMapping bug)
   - Microsoft UWP SDK 10.0.14393.x
   - Visual Studio 2015
+  
+ Install guide: https://hololens.reality.news/how-to/hololens-dev-101-build-basic-hololens-app-minutes-0175021/
 
 May work with combinations of newer UWP SDK & Visual Studio, but in my case using latest SDK broke compatibility with VS2015 & VS2017.
 
