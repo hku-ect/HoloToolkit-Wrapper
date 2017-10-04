@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/HoloTookit-Wrapper/Examples/Scenes/followup_scene.unity
     guid: 7b29486135e888b46a7da07b1f5b9506
+  - enabled: 1
+    path: Assets/HoloTookit-Wrapper/Examples/Scenes/calibration_followup.unity
+    guid: 00000000000000000000000000000000

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.VR.WSA;
 using UnityEngine.VR.WSA.Persistence;
@@ -32,6 +33,7 @@ namespace HKUECT.HoloLens {
 		public Button feedbackButton;
 		public WrappedAnchor goXZ, goMinXMinZ;
 		public Transform optitrackCenter;
+		public SceneReference followupScene;
 
 		WorldAnchor anchorXZ, anchorMinXMinZ;
 
@@ -183,6 +185,11 @@ namespace HKUECT.HoloLens {
 			//apply scale
 			OptiTrackOSCClient oscClient = optitrackCenter.GetComponent<OptiTrackOSCClient>();
 			oscClient.scale = (v1.magnitude / v2.magnitude);
+
+			//if followup scene is not null, go there...
+			if (followupScene != null ) {
+				SceneManager.LoadScene(followupScene);
+			}
 		}
 
 		void ReAnchor( ref WorldAnchor anchor, ref WrappedAnchor go ) {
