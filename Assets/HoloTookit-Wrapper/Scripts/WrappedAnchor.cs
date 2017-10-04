@@ -64,7 +64,7 @@ namespace HKUECT.HoloLens {
 				WorldErrors.Print("No Anchor, creating one");
 				NoAnchor();
 				WorldAnchorManager.Instance.AttachAnchor(deferredParent.gameObject, anchorName);
-				StartCoroutine(AnchorTest());
+				//StartCoroutine(AnchorTest());
 			}
 			else {
 				WorldErrors.Print("Loaded Anchor");
@@ -72,6 +72,10 @@ namespace HKUECT.HoloLens {
 			}
 
 			yield return null;
+		}
+
+		public void ReAnchor() {
+			StartCoroutine(Start());
 		}
 
 		protected virtual void NoAnchor() {
@@ -88,16 +92,20 @@ namespace HKUECT.HoloLens {
 		}
 
 		void StartDrag() {
-			//remove anchor
-			WorldErrors.Print("Remove Anchor");
-			WorldAnchorManager.Instance.RemoveAnchor(gameObject);
+			if (movable) {
+				//remove anchor
+				WorldErrors.Print("Remove Anchor");
+				WorldAnchorManager.Instance.RemoveAnchor(gameObject);
+			}
 		}
 
 		void StopDrag() {
 			//re-add anchor
-			WorldErrors.Print("Attach Anchor");
-			WorldAnchorManager.Instance.AttachAnchor(gameObject, anchorName);
-			StartCoroutine(AnchorTest());
+			if (movable) {
+				WorldErrors.Print("Attach Anchor");
+				WorldAnchorManager.Instance.AttachAnchor(gameObject, anchorName);
+				StartCoroutine(AnchorTest());
+			}
 		}
 
 		IEnumerator AnchorTest() {
