@@ -9,12 +9,17 @@ public class FakeOSC : MonoBehaviour {
 	static OSCClient client;
 
 	public int id;
+	public bool flyAround = false;
+
+	Vector3 center;
 
 	// Use this for initialization
 	void Start () {
 		if (client == null) {
 			client = new OSCClient(IPAddress.Parse("127.0.0.1"), 6200);
 		}
+
+		center = transform.position;
 	}
 	
 	void OnDestroy() {
@@ -25,6 +30,13 @@ public class FakeOSC : MonoBehaviour {
 	}
 	
 	void LateUpdate() {
+		if (flyAround) {
+			Vector3 newPos = center;
+			newPos.x = Mathf.Cos(Time.time);
+			newPos.z = Mathf.Sin(Time.time);
+			transform.position = newPos;
+		}
+
 		OSCMessage msg = new OSCMessage("/rigidBody");
 
 		msg.Append(id);

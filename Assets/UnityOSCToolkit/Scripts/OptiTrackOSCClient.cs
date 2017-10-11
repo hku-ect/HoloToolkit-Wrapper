@@ -175,7 +175,7 @@ namespace HKUECT {
 
 			mTransform = transform;
 			server = new OSCServer(oscReceivePort);
-			mTransform.localScale = Vector2.one * scale;
+			mTransform.localScale = Vector3.one * scale;
 
 			//playerObject.name = playerObjectName;
 
