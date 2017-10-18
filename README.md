@@ -36,3 +36,17 @@ After a fixed time (you can find this in the ScanForNextScene script, right now 
 PlacableAnchors extend the WrappedAnchor, so can be moved if they have a collider. Other things they let you do:
 - Indicate a volume in space that corresponds with the size of the (group of) objects
 - Indicate which objects (preferrably children) should be activated once the anchor is placed (so objects don't pop-and-move once you enter the scene)
+
+## Motion Capture Calibration + Followup
+
+The "calibration" scene contains an example of how to interface with an OptiTrack mocap system using the other available tools (UnityOSCToolkit & NatNet2OSCBridge). The setup can be used as follows (requires OptiTrack mocap system):
+  - Create a Motive project with two objects: xz & minxminz
+  - Use the NatNet2OSCBridge to connect to the HoloLens (easy way is to create a local WiFi Hotspot, just make sure it is not also connected to any WiFi networks)
+  - Build the example project to HoloLens and try it out
+  
+  The calibration algorithm does the following:
+   - Checks if objects named "xz" & "minxminz" (from the OSCBridge) are in the correct corners
+   - Asks the user to place virtual anchors on top of these objects
+   - Finds the center of the OptiTrack space, and creates a new anchor for that position
+  
+  Since the UnityOSCToolkit already works from a "center" object, this then makes sure all the objects are correctly positioned and rotated according to the real-world location of the tracked object.
