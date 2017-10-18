@@ -350,7 +350,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - name: testObject
-    prefab: {fileID: 1081581853618298, guid: b526b4eb73c68b44cafab43ea465ea34, type: 2}
+    prefab: {fileID: 1311652319185650, guid: 13a281a67f0f32a49ad44fbff861b966, type: 2}
+    deactivateWhenMissing: 1
+    deactivateWhenUntracked: 1
+  - name: xz
+    prefab: {fileID: 1672203230451858, guid: d0104f2590fba954a8dadeecfd0b018f, type: 2}
+    deactivateWhenMissing: 1
+    deactivateWhenUntracked: 1
+  - name: minxminz
+    prefab: {fileID: 1311652319185650, guid: 13a281a67f0f32a49ad44fbff861b966, type: 2}
     deactivateWhenMissing: 1
     deactivateWhenUntracked: 1
 --- !u!4 &628192888

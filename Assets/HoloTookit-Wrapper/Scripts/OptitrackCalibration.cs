@@ -73,6 +73,12 @@ namespace HKUECT.HoloLens {
 			anchorMinXMinZ = store.Load(strMinXMinZ, goMinXMinZ.gameObject);
 			anchorCenter = store.Load(strCenter, optitrackCenter.gameObject);
 			if (anchorCenter != null) {
+				//load follow-up directly...
+				//if (followupScene != null ) {
+				//	SceneManager.LoadScene(followupScene);
+				//}
+				//yield break;
+				
 				//for now always recalibrate until it works...
 				/*
 				if (!recalibrate) {
@@ -264,7 +270,7 @@ namespace HKUECT.HoloLens {
 				yield return new WaitForSeconds(.25f);
 			}
 
-			//HACK
+			//HACK because of bug when re-anchoring a pre-existing (loaded) anchor (snaps to old position), re/de/re-anchor fixes this
 			WorldAnchorManager.Instance.AttachAnchor(optitrackCenter.gameObject, strCenter);
 			yield return new WaitForSeconds(.25f);
 			WorldAnchorManager.Instance.RemoveAnchor(optitrackCenter.gameObject);
