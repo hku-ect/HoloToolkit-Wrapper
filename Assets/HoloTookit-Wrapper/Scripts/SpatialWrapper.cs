@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using HoloToolkit.Unity;
-using UnityEngine.VR.WSA;
+
 
 
 namespace HKUECT.HoloLens {
@@ -74,11 +74,11 @@ namespace HKUECT.HoloLens {
 			}
 
 			//turn off rendering if we're not scanning, store old mode
-			SpatialMappingRenderer smRend = FindObjectOfType<SpatialMappingRenderer>();
-			SpatialMappingRenderer.RenderState oldState = SpatialMappingRenderer.RenderState.Occlusion;
+			UnityEngine.XR.WSA.SpatialMappingRenderer smRend = FindObjectOfType<UnityEngine.XR.WSA.SpatialMappingRenderer>();
+			UnityEngine.XR.WSA.SpatialMappingRenderer.RenderState oldState = UnityEngine.XR.WSA.SpatialMappingRenderer.RenderState.Occlusion;
 			if (smRend != null) {
 				oldState = smRend.renderState;
-				smRend.renderState = SpatialMappingRenderer.RenderState.None;	
+				smRend.renderState = UnityEngine.XR.WSA.SpatialMappingRenderer.RenderState.None;	
 			}
 			running = true;
 

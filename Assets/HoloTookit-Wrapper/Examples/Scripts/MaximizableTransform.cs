@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HKUECT.HoloLens;
-using UnityEngine.VR.WSA.Input;
+
 
 /// <summary>
 /// An example illustrating how to use the GlobalGestures to create minimize/maximize functionality in the hierarchy
@@ -42,7 +42,7 @@ public class MaximizableTransform : MonoBehaviour {
 		GlobalGestures.recognizerInstance.TappedEvent -= Tapped;
 	}
 	
-	void Tapped(InteractionSourceKind source, int tapCount, Ray headRay) {
+	void Tapped(UnityEngine.XR.WSA.Input.InteractionSourceKind source, int tapCount, Ray headRay) {
 		RaycastHit hitInfo;
 		if ( Physics.Raycast(headRay, out hitInfo )) {
 			bool found = false;

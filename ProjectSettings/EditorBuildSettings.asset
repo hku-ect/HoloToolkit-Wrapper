@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/HoloTookit-Wrapper/Examples/Scenes/calibration.unity
     guid: 8da026adbf49f154b8af50c8dc277ad3
   - enabled: 1
+    path: Assets/HoloTookit-Wrapper/Examples/Scenes/calibration_followup.unity
+    guid: b9948f0700569d84eb20524148fa3a09
+  - enabled: 1
     path: Assets/HoloTookit-Wrapper/Examples/Scenes/scanner_scene.unity
     guid: a494ce1784d78ff47a75c95d200789b6
-  - enabled: 1
-    path: Assets/HoloTookit-Wrapper/Examples/Scenes/simple_anchor.unity
-    guid: 6a42bbfc69345a04abf5b80a7818dab4
   - enabled: 1
     path: Assets/HoloTookit-Wrapper/Examples/Scenes/followup_scene.unity
     guid: 7b29486135e888b46a7da07b1f5b9506
   - enabled: 1
-    path: Assets/HoloTookit-Wrapper/Examples/Scenes/calibration_followup.unity
-    guid: 00000000000000000000000000000000
+    path: Assets/HoloTookit-Wrapper/Examples/Scenes/simple_anchor.unity
+    guid: 6a42bbfc69345a04abf5b80a7818dab4

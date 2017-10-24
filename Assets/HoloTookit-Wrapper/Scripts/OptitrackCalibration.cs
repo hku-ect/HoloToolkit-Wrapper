@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.VR.WSA;
-using UnityEngine.VR.WSA.Persistence;
+using UnityEngine.XR.WSA.Persistence;
+
+
+
 
 namespace HKUECT.HoloLens {
 	/// <summary>
@@ -36,7 +38,7 @@ namespace HKUECT.HoloLens {
 		public Transform optitrackCenter;
 		public SceneReference followupScene;
 
-		WorldAnchor anchorXZ, anchorMinXMinZ, anchorCenter;
+		UnityEngine.XR.WSA.WorldAnchor anchorXZ, anchorMinXMinZ, anchorCenter;
 
 		WorldAnchorStore store;
 		bool done = false;
@@ -298,17 +300,18 @@ namespace HKUECT.HoloLens {
 			}
 		}
 
-		void ReAnchor( ref WorldAnchor anchor, ref WrappedAnchor go ) {
+		void ReAnchor( ref UnityEngine.XR.WSA.WorldAnchor anchor, ref WrappedAnchor go ) {
 			if (anchor == null) {
 				go.ReAnchor();
 			}
 		}
 
 		public void ButtonPressed() {
+			WorldErrors.Print("Button Pressed");
 			done = true;
 		}
 
-		void GotStore(WorldAnchorStore newStore) {
+		void GotStore(UnityEngine.XR.WSA.Persistence.WorldAnchorStore newStore) {
 			Debug.Log("GOT STORE");
 			store = newStore;
 		}

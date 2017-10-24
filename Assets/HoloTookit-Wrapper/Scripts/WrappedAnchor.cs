@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_2017_2_OR_NEWER
+using UnityEngine.XR.WSA.Input;
+#else
 using UnityEngine.VR.WSA.Input;
-using UnityEngine.VR.WSA;
+#endif
+
 using HoloToolkit.Unity;
-using UnityEngine.VR.WSA.Persistence;
+
 using HoloToolkit.Unity.InputModule;
 
 namespace HKUECT.HoloLens {
 
 	//[RequireComponent(typeof(Collider))]
 	public class WrappedAnchor : MonoBehaviour {
-		static WorldAnchorStore store;
+		static UnityEngine.XR.WSA.Persistence.WorldAnchorStore store;
 		static bool GettingStore = false;
 		//static bool solverInitialised = false;
 		//static bool scanStarted = false;
@@ -24,7 +29,7 @@ namespace HKUECT.HoloLens {
 		public HandDraggable.RotationModeEnum rotationMode = HandDraggable.RotationModeEnum.Default;
 
 		//Collider mCol;
-		WorldAnchor anchor;
+		UnityEngine.XR.WSA.WorldAnchor anchor;
 
 		void Awake() {
 			if (movable) {
@@ -32,6 +37,12 @@ namespace HKUECT.HoloLens {
 				dragComp.StartedDragging += StartDrag;
 				dragComp.StoppedDragging += StopDrag;
 				dragComp.RotationMode = rotationMode;
+				dragComp.IsDraggingEnabled = true;
+				
+				HoloToolkit.Unity.InputModule.Cursor c = FindObjectOfType<HoloToolkit.Unity.InputModule.Cursor>();
+				dragComp.hackedCursorReference = c.transform;
+
+				WorldErrors.Print("Created Hand-draggable");
 			}
 		}
 
@@ -51,7 +62,7 @@ namespace HKUECT.HoloLens {
 				WorldErrors.Print("Getting Store");
 				if (!GettingStore) {
 					GettingStore = true;
-					WorldAnchorStore.GetAsync(GotStore);
+					UnityEngine.XR.WSA.Persistence.WorldAnchorStore.GetAsync(GotStore);
 				}
 				while (store == null)
 					yield return null;
@@ -59,7 +70,7 @@ namespace HKUECT.HoloLens {
 				WorldErrors.Print("Got Store");
 			}
 
-			WorldAnchor wa = store.Load(anchorName, gameObject);
+			UnityEngine.XR.WSA.WorldAnchor wa = store.Load(anchorName, gameObject);
 			if (wa == null) {   //no anchor found
 				WorldErrors.Print("No Anchor, creating one");
 				NoAnchor();
@@ -86,7 +97,7 @@ namespace HKUECT.HoloLens {
 
 		}
 
-		void GotStore(WorldAnchorStore newStore) {
+		void GotStore(UnityEngine.XR.WSA.Persistence.WorldAnchorStore newStore) {
 			store = newStore;
 			GettingStore = false;
 		}
@@ -111,7 +122,7 @@ namespace HKUECT.HoloLens {
 		IEnumerator AnchorTest() {
 			yield return new WaitForSeconds(5f);
 
-			WorldAnchor wa = store.Load(anchorName, gameObject);
+			UnityEngine.XR.WSA.WorldAnchor wa = store.Load(anchorName, gameObject);
 			if (wa == null) {
 				WorldErrors.Print("Anchor null");
 			}

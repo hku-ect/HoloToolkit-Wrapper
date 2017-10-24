@@ -9,6 +9,7 @@ public class WorldErrors : MonoBehaviour
 	public Object textObject;
 	public int listSize = 10;
 	public bool isEnabled = true;
+	public float scale = 1;
 
 	TextMesh[] textMeshes;
 	//int current = 0;
@@ -24,9 +25,12 @@ public class WorldErrors : MonoBehaviour
 		textMeshes = new TextMesh[listSize];
 		for (int i = 0; i < listSize; ++i) {
 			GameObject g = Instantiate (textObject) as GameObject;
-			g.transform.position = transform.position + Vector3.up * i * .5f;
+			g.transform.parent = transform;
+			g.transform.localPosition = Vector3.up * i * .5f;
 			textMeshes [i] = g.GetComponent<TextMesh> ();
 		}
+
+		transform.localScale = Vector3.one * scale;
 	}
 
 	void Update() {
